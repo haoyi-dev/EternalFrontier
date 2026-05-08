@@ -72,7 +72,7 @@ public class ExchangeCommand implements SubCommand, Listener {
 
         int[] slots = {10,11,12,13,14,15,16, 20,21};
         int slot = e.getRawSlot();
-        if (slot == 35) { plugin.getServer().getScheduler().runTask(plugin, p::closeInventory); return; }
+        if (slot == 35) { plugin.getServer().getScheduler().runTask(plugin, () -> p.closeInventory()); return; }
 
         for (int i = 0; i < slots.length; i++) {
             if (slot != slots[i]) continue;

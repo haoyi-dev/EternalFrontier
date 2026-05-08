@@ -41,7 +41,7 @@ public class MarketCommand implements SubCommand, Listener {
             {"Boss Crate",Material.TRAPPED_CHEST,1000},{"Ancient Crate",Material.BARREL,2500},
             {"Eternal Crate",Material.SHULKER_BOX,5000}},
         {
-            {"Boss Token",Material.NETHERITE_SCRAP,400},{"Dragon Scale",Material.SCUTE,600},
+            {"Boss Token",Material.NETHERITE_SCRAP,400},{"Dragon Scale",Material.SCULK,600},
             {"Wither Bone",Material.BONE,350},{"Guardian Eye",Material.PRISMARINE_CRYSTALS,450},
             {"Blaze Core",Material.BLAZE_POWDER,250},{"Ender Pearl",Material.ENDER_PEARL,120},
             {"Ghast Tear",Material.GHAST_TEAR,180},{"Magma Cream",Material.MAGMA_CREAM,90},
@@ -139,7 +139,7 @@ public class MarketCommand implements SubCommand, Listener {
         }
         if (slot == 45 && tab > 0) { plugin.getServer().getScheduler().runTask(plugin, () -> openTab(p, tab-1)); return; }
         if (slot == 53 && tab < 5) { plugin.getServer().getScheduler().runTask(plugin, () -> openTab(p, tab+1)); return; }
-        if (slot == 49) { plugin.getServer().getScheduler().runTask(plugin, p::closeInventory); return; }
+        if (slot == 49) { plugin.getServer().getScheduler().runTask(plugin, () -> p.closeInventory()); return; }
 
         int[] slots = {10,11,12,13,14,15,16, 19,20,21,22,23,24,25, 28,29,30,31,32,33,34};
         int itemIdx = -1;

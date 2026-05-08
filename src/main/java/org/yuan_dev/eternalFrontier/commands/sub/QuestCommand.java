@@ -58,7 +58,7 @@ public class QuestCommand implements SubCommand, Listener {
         }
 
         if (quests.isEmpty()) {
-            inv.setItem(13, GuiUtils.buildItem(Material.HOURGLASS, "&7Dang tai quest...", "&7Thu lai sau 1 giay"));
+            inv.setItem(13, GuiUtils.buildItem(Material.CLOCK, "&7Dang tai quest...", "&7Thu lai sau 1 giay"));
         }
 
         inv.setItem(22, GuiUtils.buildItem(Material.CLOCK,
@@ -90,7 +90,7 @@ public class QuestCommand implements SubCommand, Listener {
                 return;
             }
         }
-        if (slot == 26) plugin.getServer().getScheduler().runTask(plugin, p::closeInventory);
+        if (slot == 26) plugin.getServer().getScheduler().runTask(plugin, () -> p.closeInventory());
     }
 
     @Override public String getPermission() { return "eternalfrontier.quest"; }

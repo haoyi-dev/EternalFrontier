@@ -244,7 +244,7 @@ public class ClanCommand implements SubCommand, Listener {
             );
         }
         if (slot == 26 || slot == 35) {
-            plugin.getServer().getScheduler().runTask(plugin, p::closeInventory);
+            plugin.getServer().getScheduler().runTask(plugin, () -> p.closeInventory());
         }
     }
 

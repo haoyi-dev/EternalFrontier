@@ -128,7 +128,7 @@ public class CoreCommand implements SubCommand, Listener {
                 if (loc != null) { p.closeInventory(); p.teleport(loc); plugin.getMessageManager().send(p, "core.teleport"); }
             });
         }
-        if (slot == 35) plugin.getServer().getScheduler().runTask(plugin, p::closeInventory);
+        if (slot == 35) plugin.getServer().getScheduler().runTask(plugin, () -> p.closeInventory());
     }
 
     private String colorize(String s) { return s.replace("&", "§"); }
