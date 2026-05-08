@@ -1,0 +1,186 @@
+name: EternalFrontier
+version: '${project.version}'
+main: org.yuan_dev.eternalFrontier.EternalFrontier
+api-version: '1.21'
+authors: [yuan_dev]
+description: A comprehensive plugin with economy, zones, clans, and core systems
+website: https://github.com/yuan_dev/EternalFrontier
+
+softdepend:
+  - PlaceholderAPI
+
+commands:
+  et:
+    description: Main EternalFrontier command
+    usage: /et <subcommand>
+    aliases: [eternal]
+    permission: eternalfrontier.use
+
+  etadmin:
+    description: Admin commands for EternalFrontier
+    usage: /etadmin <subcommand>
+    aliases: [efadmin]
+    permission: eternalfrontier.admin
+
+  wallet:
+    description: Open your coin wallet
+    usage: /wallet
+    permission: eternalfrontier.economy.wallet
+
+  market:
+    description: Open the market GUI
+    usage: /market
+    permission: eternalfrontier.economy.market
+
+  zone:
+    description: View zone information
+    usage: /zone
+    permission: eternalfrontier.zone.info
+
+  clan:
+    description: Clan management commands
+    usage: /clan <subcommand>
+    permission: eternalfrontier.clan.use
+
+  core:
+    description: Core management commands
+    usage: /core <subcommand>
+    permission: eternalfrontier.core.use
+
+  top:
+    description: View leaderboards
+    usage: /top [type]
+    permission: eternalfrontier.top
+
+  quest:
+    description: View and manage daily quests
+    usage: /quest
+    permission: eternalfrontier.quest
+
+  exchange:
+    description: Open the exchange GUI
+    usage: /exchange
+    permission: eternalfrontier.exchange
+
+  pay:
+    description: Pay coins to another player
+    usage: /pay <player> <amount>
+    permission: eternalfrontier.economy.pay
+
+  balance:
+    description: Check coin balance
+    usage: /balance [player]
+    aliases: [bal, coins]
+    permission: eternalfrontier.economy.balance
+
+permissions:
+  eternalfrontier.*:
+    description: All EternalFrontier permissions
+    children:
+      eternalfrontier.use: true
+      eternalfrontier.admin: true
+      eternalfrontier.economy.*: true
+      eternalfrontier.zone.*: true
+      eternalfrontier.clan.*: true
+      eternalfrontier.core.*: true
+      eternalfrontier.top: true
+      eternalfrontier.quest: true
+      eternalfrontier.exchange: true
+
+  eternalfrontier.use:
+    description: Basic plugin usage
+    default: true
+
+  eternalfrontier.admin:
+    description: Admin access
+    default: op
+
+  eternalfrontier.economy.*:
+    description: All economy permissions
+    children:
+      eternalfrontier.economy.wallet: true
+      eternalfrontier.economy.market: true
+      eternalfrontier.economy.pay: true
+      eternalfrontier.economy.balance: true
+      eternalfrontier.economy.admin: false
+    default: true
+
+  eternalfrontier.economy.wallet:
+    description: Open wallet GUI
+    default: true
+
+  eternalfrontier.economy.market:
+    description: Access market
+    default: true
+
+  eternalfrontier.economy.pay:
+    description: Pay other players
+    default: true
+
+  eternalfrontier.economy.balance:
+    description: Check balance
+    default: true
+
+  eternalfrontier.economy.admin:
+    description: Admin economy commands (give/take/set)
+    default: op
+
+  eternalfrontier.zone.*:
+    description: All zone permissions
+    children:
+      eternalfrontier.zone.info: true
+    default: true
+
+  eternalfrontier.zone.info:
+    description: View zone info
+    default: true
+
+  eternalfrontier.clan.*:
+    description: All clan permissions
+    children:
+      eternalfrontier.clan.use: true
+      eternalfrontier.clan.admin: false
+    default: true
+
+  eternalfrontier.clan.use:
+    description: Use clan commands
+    default: true
+
+  eternalfrontier.clan.admin:
+    description: Admin clan commands
+    default: op
+
+  eternalfrontier.core.*:
+    description: All core permissions
+    children:
+      eternalfrontier.core.use: true
+      eternalfrontier.core.admin: false
+    default: true
+
+  eternalfrontier.core.use:
+    description: Use core commands
+    default: true
+
+  eternalfrontier.core.admin:
+    description: Admin core commands (bypass protection)
+    default: op
+
+  eternalfrontier.top:
+    description: View leaderboards
+    default: true
+
+  eternalfrontier.quest:
+    description: Access daily quests
+    default: true
+
+  eternalfrontier.exchange:
+    description: Access exchange GUI
+    default: true
+
+  eternalfrontier.bypass.protection:
+    description: Bypass core protection
+    default: op
+
+  eternalfrontier.bypass.pvp:
+    description: Bypass PvP restrictions
+    default: op

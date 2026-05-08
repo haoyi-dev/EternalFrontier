@@ -1,0 +1,132 @@
+
+database:
+  file: "eternalfrontier"   # H2 file name (no extension)
+  pool-size: 10
+
+economy:
+  starting-balance: 100
+  currency-name: "Coins"
+  currency-symbol: "⭐"
+  mob-rewards:
+    zone1: 1
+    zone2: 3
+    zone3: 5
+  hourly-rewards:
+    zone1: 1
+    zone2: 3
+    zone3: 5
+  max-balance: 999999999
+  transaction-history-size: 5
+
+zone:
+  zone1:
+    name: "Safe Zone"
+    color: "&a"
+    max-radius: 2000
+  zone2:
+    name: "Danger Zone"
+    color: "&e"
+    min-radius: 2000
+    max-radius: 4000
+  zone3:
+    name: "Death Zone"
+    color: "&c"
+    min-radius: 4000
+  worlds:
+    - "world"
+    - "phoban"
+  bossbar-update-interval: 20
+
+clan:
+  name-min-length: 3
+  name-max-length: 16
+  name-pattern: "^[a-zA-Z0-9_]+$"
+  tag-min-length: 2
+  tag-max-length: 5
+  tiers:
+    1:
+      name: "Basic"
+      max-members: 8
+      max-homes: 1
+      chest-rows: 1  # 1 chest = 54 slots
+      upgrade-cost: 0
+    2:
+      name: "Advanced"
+      max-members: 25
+      max-homes: 3
+      chest-rows: 3
+      upgrade-cost: 5000
+    3:
+      name: "Elite"
+      max-members: -1  # unlimited
+      max-homes: 5
+      chest-rows: 9
+      upgrade-cost: 25000
+  chat-format: "&8[&6C&8] &7{player}&8: &f{message}"
+  prefix-format: "&8[&6{tag}&8] "
+
+core:
+  protection-radius: 75
+  max-hp: 25000
+  pvp-damage-per-hit: 35
+  particle-interval: 60
+  hologram-update-interval: 60
+  upgrades:
+    iron-plate:
+      name: "&7Iron Plate"
+      description: "Reduces incoming damage by 20%"
+      cost: 3000
+      max-level: 3
+    drone:
+      name: "&bDrone Defense"
+      description: "Auto-attacks enemies in range"
+      cost: 5000
+      max-level: 1
+    repair:
+      name: "&aAuto Repair"
+      description: "Regenerates 100 HP/min"
+      cost: 4000
+      max-level: 3
+    beacon:
+      name: "&eBeacon Boost"
+      description: "+10% hourly zone rewards"
+      cost: 2000
+      max-level: 5
+
+leaderboard:
+  update-interval: 6000   # ticks (5 minutes)
+  top-size: 10
+  hologram-world: "phoban"
+  hologram-x: 0.5
+  hologram-y: 100.0
+  hologram-z: 0.5
+  hologram-spacing: 10   # blocks between each hologram
+
+quest:
+  daily-reset-hour: 0    # midnight
+  quests-per-day: 4
+  types:
+    kill-mobs:
+      targets: [20, 50, 100]
+      rewards: [50, 150, 300]
+    mine-blocks:
+      targets: [32, 64, 128]
+      rewards: [30, 80, 200]
+    sell-items:
+      targets: [5, 15, 30]
+      rewards: [40, 100, 250]
+    login:
+      targets: [1]
+      rewards: [25]
+
+spawn:
+  world: "phoban"
+  x: 0.5
+  y: 64.0
+  z: 0.5
+  yaw: 0.0
+  pitch: 0.0
+
+prefix: "&8[&6⚔ EF&8] "
+
+debug: false
