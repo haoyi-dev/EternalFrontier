@@ -88,7 +88,11 @@ public final class EternalFrontier extends JavaPlugin {
         if (leaderboardManager != null) leaderboardManager.shutdown();
         if (questManager != null)       questManager.shutdown();
         if (hologramManager != null)    hologramManager.removeAll();
-        if (databaseManager != null)    databaseManager.disconnect();
+
+        if (databaseManager != null) {
+            databaseManager.awaitAsyncTasks(3000);
+            databaseManager.disconnect();
+        }
 
         String[] bye = {
             "&8╔════════════════════════════════════╗",

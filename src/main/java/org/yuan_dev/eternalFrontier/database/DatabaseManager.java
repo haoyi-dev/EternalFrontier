@@ -56,6 +56,20 @@ public class DatabaseManager {
         }
     }
 
+    public void awaitAsyncTasks(long timeoutMs) {
+        asyncExecutor.shutdown();
+        try {
+            if (!asyncExecutor.awaitTermination(timeoutMs, java.util.concurrent.TimeUnit.MILLISECONDS)) {
+                plugin.getLogger().warning("DB async tasks chua ket thuc truoc timeout, dang force shutdown...");
+                asyncExecutor.shutdownNow();
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            plugin.getLogger().warning("Bi ngat khi cho DB async tasks ket thuc.");
+            asyncExecutor.shutdownNow();
+        }
+    }
+
     public Connection getConnection() {
         return connection;
     }
@@ -194,7 +208,7 @@ public class DatabaseManager {
                     type        VARCHAR(16) NOT NULL,
                     uuid        VARCHAR(36) NOT NULL,
                     name        VARCHAR(64) NOT NULL,
-                    value       BIGINT      NOT NULL DEFAULT 0,
+                    score_value BIGINT      NOT NULL DEFAULT 0,
                     updated_at  TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
                     UNIQUE (type, uuid)
                 )
