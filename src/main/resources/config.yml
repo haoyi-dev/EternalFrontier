@@ -1,6 +1,6 @@
 
 database:
-  file: "eternalfrontier"   # H2 file name (no extension)
+  file: "eternalfrontier"
   pool-size: 10
 
 economy:
@@ -73,34 +73,34 @@ core:
   hologram-update-interval: 60
   upgrades:
     iron-plate:
-      name: "&7Iron Plate"
-      description: "Reduces incoming damage by 20%"
+      name: "&7Tấm Giáp Sắt"
+      description: "Giảm 20% sát thương nhận vào"
       cost: 3000
       max-level: 3
     drone:
-      name: "&bDrone Defense"
-      description: "Auto-attacks enemies in range"
+      name: "&bDrone Phòng Thủ"
+      description: "Tự động tấn công kẻ địch trong phạm vi"
       cost: 5000
       max-level: 1
     repair:
-      name: "&aAuto Repair"
-      description: "Regenerates 100 HP/min"
+      name: "&aTự Động Sửa Chữa"
+      description: "Hồi phục 100 HP mỗi phút"
       cost: 4000
       max-level: 3
     beacon:
-      name: "&eBeacon Boost"
-      description: "+10% hourly zone rewards"
+      name: "&eCường Hóa Beacon"
+      description: "Tăng 10% phần thưởng khu vực mỗi giờ"
       cost: 2000
       max-level: 5
 
 leaderboard:
-  update-interval: 6000   # ticks (5 minutes)
+  update-interval: 6000   # 5 phut
   top-size: 10
   hologram-world: "phoban"
   hologram-x: 0.5
   hologram-y: 100.0
   hologram-z: 0.5
-  hologram-spacing: 10   # blocks between each hologram
+  hologram-spacing: 10
 
 quest:
   daily-reset-hour: 0    # midnight
@@ -120,7 +120,7 @@ quest:
       rewards: [25]
 
 spawn:
-  world: "phoban"
+  world: "world"
   x: 0.5
   y: 64.0
   z: 0.5

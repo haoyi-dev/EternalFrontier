@@ -16,6 +16,7 @@ import org.yuan_dev.eternalFrontier.listeners.ChatListener;
 import org.yuan_dev.eternalFrontier.listeners.ProtectionListener;
 import org.yuan_dev.eternalFrontier.listeners.BlockBreakListener;
 import org.yuan_dev.eternalFrontier.listeners.PlayerSessionListener;
+import org.yuan_dev.eternalFrontier.listeners.GuiProtectListener;
 import org.yuan_dev.eternalFrontier.managers.EFPlaceholderExpansion;
 import org.yuan_dev.eternalFrontier.managers.HologramManager;
 import org.bukkit.Bukkit;
@@ -182,6 +183,7 @@ public final class EternalFrontier extends JavaPlugin {
         pm.registerEvents(new ChatListener(this), this);
         pm.registerEvents(new ProtectionListener(this), this);
         pm.registerEvents(new BlockBreakListener(this), this);
+        pm.registerEvents(new GuiProtectListener(), this);
     }
 
     private void hookPlaceholderAPI() {

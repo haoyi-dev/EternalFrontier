@@ -120,6 +120,44 @@ public class CoreManager {
         });
     }
 
+    public CompletableFuture<Boolean> relocateCore(Player player, Location newLoc) {
+        return db.supplyAsync(() -> {
+            ClanData clan = plugin.getClanManager().getClanByPlayer(player.getUniqueId());
+            if (clan == null) return false;
+
+            CoreData current = coreCache.get(clan.name().toLowerCase());
+            if (current == null) return false;
+
+            try {
+                String sql = "UPDATE cores SET world = ?, x = ?, y = ?, z = ? WHERE clan_name = ?";
+                try (PreparedStatement ps = db.prepareStatement(sql)) {
+                    ps.setString(1, newLoc.getWorld().getName());
+                    ps.setDouble(2, newLoc.getX());
+                    ps.setDouble(3, newLoc.getY());
+                    ps.setDouble(4, newLoc.getZ());
+                    ps.setString(5, clan.name());
+                    int updatedRows = ps.executeUpdate();
+                    if (updatedRows <= 0) return false;
+                }
+
+                CoreData updated = new CoreData(
+                    current.id(),
+                    current.clanName(),
+                    newLoc.getWorld().getName(),
+                    newLoc.getX(), newLoc.getY(), newLoc.getZ(),
+                    current.hp(), current.maxHp(),
+                    current.upgradeIron(), current.upgradeDrone(),
+                    current.upgradeRepair(), current.upgradeBeacon()
+                );
+                coreCache.put(clan.name().toLowerCase(), updated);
+                return true;
+            } catch (SQLException e) {
+                plugin.getLogger().log(Level.WARNING, "Khong the di doi core cua clan " + clan.name(), e);
+                return false;
+            }
+        });
+    }
+
     public void removeCoreForClan(String clanName) {
         coreCache.remove(clanName.toLowerCase());
         db.runAsync(() -> {
@@ -205,6 +243,21 @@ public class CoreManager {
             if (coreLoc == null) continue;
             if (!coreLoc.getWorld().equals(loc.getWorld())) continue;
             if (coreLoc.distance(loc) <= protectionRadius) return core;
+        }
+        return null;
+    }
+
+    public CoreData getCoreByExactBlock(Location loc) {
+        for (CoreData core : coreCache.values()) {
+            if (!core.isAlive()) continue;
+            Location coreLoc = core.toLocation();
+            if (coreLoc == null) continue;
+            if (!coreLoc.getWorld().equals(loc.getWorld())) continue;
+            if (coreLoc.getBlockX() == loc.getBlockX()
+                && coreLoc.getBlockY() == loc.getBlockY()
+                && coreLoc.getBlockZ() == loc.getBlockZ()) {
+                return core;
+            }
         }
         return null;
     }
